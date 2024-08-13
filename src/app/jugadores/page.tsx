@@ -1,4 +1,6 @@
-import { JugadoresFormulario } from "../new/jugador-formulario";
+import JugadoresFormulario from "../new/jugador-formulario";
+
+
 
 
 export default async function Jugadores() {

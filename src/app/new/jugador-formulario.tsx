@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/select";
 // import { jugadores } from "../db/schema";
 
-export function JugadoresFormulario() {
+ function JugadoresFormulario() {
   async function crearJugador(formData: FormData) {
     "use server";
     const id = formData.get("id");
@@ -161,3 +161,6 @@ export function JugadoresFormulario() {
     </>
   );
 }
+
+
+export default JugadoresFormulario;
