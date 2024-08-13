@@ -1,5 +1,5 @@
-
 import { JugadoresFormulario } from "../new/jugador-formulario";
+
 
 export default async function Jugadores() {
   return (
