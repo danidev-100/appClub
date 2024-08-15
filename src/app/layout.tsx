@@ -3,6 +3,8 @@ import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "./components/theme-provider";
+import { ToastContainer } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -34,6 +36,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <ToastContainer />
         </ThemeProvider>
       </body>
     </html>

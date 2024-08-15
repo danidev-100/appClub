@@ -12,15 +12,29 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-export default async function ListarJugadores() {
-  const listarJugadores = await prisma.jugadores.findMany({
+export async function listJugadores() {
+  const jugadores = await prisma.jugadores.findMany({
     include: {
       categoria: true,
     },
   });
-  console.log(listarJugadores);
+  return jugadores;
+}
+
+
+
+export default async function ListarJugadores() {
+
+  const jugadores = await listJugadores();
+  
+  // const jugadores = await prisma.jugadores.findMany({
+  //   include: {
+  //     categoria: true,
+  //   },
+  // });
+  // // console.log(listarJugadores);
   //      const listarJugadores = await db.select().from(jugadores)
-  // console.log(listarJugadores)
+  console.log(jugadores)
 
   return (
     <>
@@ -30,7 +44,7 @@ export default async function ListarJugadores() {
         </h1>
 
         <div className="flex flex-wrap  gap-4 m-4">
-          {listarJugadores.map((jugador) => (
+          {jugadores.map((jugador) => (
             <Card className="p-2" key={jugador.id}>
               <CardHeader>
                 <CardTitle>

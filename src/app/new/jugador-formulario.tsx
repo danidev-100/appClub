@@ -1,5 +1,5 @@
 import * as React from "react";
-
+import { toast } from "react-toastify";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/select";
 // import { jugadores } from "../db/schema";
 
- function JugadoresFormulario() {
+function JugadoresFormulario() {
   async function crearJugador(formData: FormData) {
     "use server";
     const id = formData.get("id");
@@ -62,6 +62,11 @@ import {
           },
         },
       });
+      if (!result) {
+        toast.error("jugador no creado");
+      } else {
+        toast.success("jugador creado");
+      }
 
       //   const result = await db.insert(jugadores).values({
       //    nombre: nombre,
@@ -84,7 +89,6 @@ import {
 
   return (
     <>
-
       <form action={crearJugador}>
         <Card className="w-[350px]">
           <CardHeader>
@@ -161,6 +165,5 @@ import {
     </>
   );
 }
-
 
 export default JugadoresFormulario;
