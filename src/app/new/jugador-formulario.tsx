@@ -22,7 +22,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-// import { jugadores } from "../db/schema";
 
 function JugadoresFormulario() {
   async function crearJugador(formData: FormData) {
@@ -68,17 +67,7 @@ function JugadoresFormulario() {
         toast.success("jugador creado");
       }
 
-      //   const result = await db.insert(jugadores).values({
-      //    nombre: nombre,
-      //     apellido: apellido,
-      //     dni: dni,
-      //     celular:celular,
-      //     fechaNacimiento: fechaNacimiento,
-
-      //   },
-
-      // ).returning()
-
+     
       console.log(result);
     } catch (error) {
       console.log(error);

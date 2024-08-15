@@ -1,8 +1,6 @@
-// import db from "../../db/index";
-// import  {jugadores}  from "../../db/schema";
+
 import prisma from "@/app/db/prisma";
 
-// import prisma from "@/lib/prisma";
 import {
   Card,
   CardContent,
@@ -27,13 +25,7 @@ export default async function ListarJugadores() {
 
   const jugadores = await listJugadores();
   
-  // const jugadores = await prisma.jugadores.findMany({
-  //   include: {
-  //     categoria: true,
-  //   },
-  // });
-  // // console.log(listarJugadores);
-  //      const listarJugadores = await db.select().from(jugadores)
+  
   console.log(jugadores)
 
   return (
