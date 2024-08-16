@@ -10,7 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-export async function listJugadores() {
+async function listJugadores() {
   const jugadores = await prisma.jugadores.findMany({
     include: {
       categoria: true,
