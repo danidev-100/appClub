@@ -23,6 +23,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+import { revalidatePath } from 'next/cache'
+
 function JugadoresFormulario() {
   async function crearJugador(formData: FormData) {
     "use server";
@@ -61,18 +63,14 @@ function JugadoresFormulario() {
           },
         },
       });
-      if (!result) {
-        toast.error("jugador no creado");
-      } else {
-        toast.success("jugador creado");
-      }
+     
 
      
       console.log(result);
     } catch (error) {
       console.log(error);
     }
-
+    revalidatePath('/jugadores')    
     redirect("/");
   }
 

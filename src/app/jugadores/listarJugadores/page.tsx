@@ -16,7 +16,8 @@ async function listJugadores() {
       categoria: true,
     },
   });
-  return jugadores;
+  return jugadores
+  
 }
 
 
