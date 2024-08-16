@@ -70,7 +70,7 @@ function JugadoresFormulario() {
     } catch (error) {
       console.log(error);
     }
-    revalidatePath('/jugadores')    
+    revalidatePath('/jugadores/listarJugadores')    
     redirect("/");
   }
 

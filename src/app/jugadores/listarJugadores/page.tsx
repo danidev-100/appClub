@@ -1,5 +1,6 @@
 
 import prisma from "@/app/db/prisma";
+import { Button } from "@/components/ui/button";
 
 import {
   Card,
@@ -65,6 +66,11 @@ export default async function ListarJugadores() {
             </Card>
           ))}
         </div>
+        <a href="/">
+
+          <Button className="bg-black  text-yellow-500 hover:bg-slate-700" >Volver</Button>
+        </a>
+        
       </main>
     </>
   );
