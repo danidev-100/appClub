@@ -1,8 +1,12 @@
-export default function Cuotas(){
-    return (
-        <div>
-            <h1>Cuotas</h1>
-            {/* Aquí se listarán los jugadores */}
-        </div>
-    )
-}
+import React from "react";
+import CuotasFormulario from "./cuotas-formulario";
+
+const Cuotas = () => {
+  return (
+    <div>
+      <CuotasFormulario />
+    </div>
+  );
+};
+
+export default Cuotas;

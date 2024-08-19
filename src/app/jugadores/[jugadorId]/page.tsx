@@ -6,7 +6,7 @@ type Props = {
 }
 
 export default function DetalleJugador({ params }: Props)  {
-        
+    
 
     return (
         <div>

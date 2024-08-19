@@ -1,5 +1,5 @@
+import db from "../../db/prisma";
 
-import prisma from "@/app/db/prisma";
 import { Button } from "@/components/ui/button";
 
 import {
@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/card";
 
 async function listJugadores() {
-  const jugadores = await prisma.jugadores.findMany({
+  const jugadores = await db.jugadores.findMany({
     include: {
       categoria: true,
     },
@@ -74,4 +74,6 @@ export default async function ListarJugadores() {
       </main>
     </>
   );
+
+  
 }

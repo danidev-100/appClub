@@ -1,5 +1,6 @@
+"use client";
 import * as React from "react";
-import { toast } from "react-toastify";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -12,9 +13,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-import { redirect } from "next/navigation";
-
-import db from "../db/prisma";
 import {
   Select,
   SelectContent,
@@ -22,57 +20,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
-import { revalidatePath } from 'next/cache'
+import { crearJugador } from "@/actions/form-actions";
+import { toast } from "react-toastify";
 
 function JugadoresFormulario() {
-  async function crearJugador(formData: FormData) {
-    "use server";
-    const id = formData.get("id");
-    const nombre = formData.get("nombre")?.toString();
-    const apellido = formData.get("apellido")?.toString();
-    const dni = formData.get("dni")?.toString();
-    const celular = formData.get("celular")?.toString();
-    const fechaNacimiento = formData.get("fecha-nacimiento")?.toString();
-    const categoria = formData.get("categoria")?.toString();
-
-    try {
-      if (
-        !nombre ||
-        !apellido ||
-        !celular ||
-        !dni ||
-        !celular ||
-        !fechaNacimiento ||
-        !categoria
-      ) {
-        return;
-      }
-
-      const result = await db.jugadores.create({
-        data: {
-          nombre: nombre,
-          apellido: apellido,
-          dni: dni,
-          celular: celular,
-          fechaNacimiento: fechaNacimiento,
-          categoria: {
-            create: {
-              categoria,
-            },
-          },
-        },
-      });
-     
-
-     
-      console.log(result);
-    } catch (error) {
-      console.log(error);
-    }
-    revalidatePath('/jugadores/listarJugadores')    
-    redirect("/");
-  }
+  const alerta = () => {
+    toast.success("jugador creado", {
+      position: "bottom-right",
+      autoClose: 2000,
+    });
+  };
 
   return (
     <>
@@ -113,6 +70,14 @@ function JugadoresFormulario() {
                 />
               </div>
               <div className="flex flex-col space-y-1.5">
+                <Label htmlFor="celularEmergencia">Celular de Emergencia</Label>
+                <Input
+                  name="celularEmergencia"
+                  id="celularEmergencia"
+                  placeholder="Celular de emergencia del jugador"
+                />
+              </div>
+              <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="fecha-nacimiento">Fecha Nacimiento</Label>
                 <Input
                   name="fecha-nacimiento"
@@ -145,7 +110,9 @@ function JugadoresFormulario() {
           </CardContent>
           <CardFooter className="flex justify-between">
             <Button variant="outline">Cancelar</Button>
-            <Button type="submit">Cargar</Button>
+            <Button onClick={alerta} type="submit">
+              Cargar
+            </Button>
           </CardFooter>
         </Card>
       </form>

@@ -5,6 +5,7 @@ CREATE TABLE "jugadores" (
     "apellido" TEXT NOT NULL,
     "dni" TEXT NOT NULL,
     "celular" TEXT NOT NULL,
+    "celularEmergencia" TEXT NOT NULL,
     "fechaNacimiento" TEXT NOT NULL,
 
     CONSTRAINT "jugadores_pkey" PRIMARY KEY ("id")
@@ -20,7 +21,10 @@ CREATE TABLE "categorias" (
 );
 
 -- CreateIndex
+CREATE UNIQUE INDEX "jugadores_dni_key" ON "jugadores"("dni");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "categorias_jugadorId_key" ON "categorias"("jugadorId");
 
 -- AddForeignKey
-ALTER TABLE "categorias" ADD CONSTRAINT "categorias_jugadorId_fkey" FOREIGN KEY ("jugadorId") REFERENCES "jugadores"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "categorias" ADD CONSTRAINT "categorias_jugadorId_fkey" FOREIGN KEY ("jugadorId") REFERENCES "jugadores"("id") ON DELETE CASCADE ON UPDATE CASCADE;

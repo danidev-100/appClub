@@ -23,10 +23,12 @@ model Jugadores {
   id              Int        @id @default(autoincrement())
   nombre          String
   apellido        String
-  dni             String
-  celular         String
+  dni             String @unique
+  celular         String 
+  celularEmergencia String
   fechaNacimiento String
- categoria Categorias?   
+  categoria Categorias?   
+  cuotas Cuotas[]
 
   @@map("jugadores")
 }
@@ -34,8 +36,20 @@ model Jugadores {
 model Categorias {
   id           Int        @id @default(autoincrement())
   categoria    String
-  jugador      Jugadores @relation(fields: [jugadorId], references: [id])
+  jugador      Jugadores @relation(fields: [jugadorId], references: [id],onDelete: Cascade, onUpdate: Cascade)
   jugadorId    Int       @unique
 
   @@map("categorias")
+}
+
+model Cuotas {
+  id          Int        @id @default(autoincrement())
+  mes         String
+  monto       String
+  fechaPago   String
+  jugador     Jugadores? @relation(fields: [jugadorId], references: [id],onDelete: Cascade, onUpdate: Cascade) 
+  jugadorId   Int       
+  comprobantePago String
+  
+  @@map("cuotas")
 }
